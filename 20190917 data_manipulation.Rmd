@@ -9,3 +9,43 @@ library(tidyverse)
 library(readxl)
 
 ``` 
+
+## import datasets
+```{r}
+litters_data =  read_csv("./data_import_examples/FAS_litters.csv")
+litters_data = janitor::clean_names(litters_data)
+
+pups_data = read_csv("./data_import_examples/FAS_pups.csv")
+pups_data = janitor::clean_names(pups_data)
+
+```
+
+## selecting !!! 
+
+```{r}
+select(litters_data,group,litter_number)
+select(litters_data,group,litter_number,gd0_weight)
+select(litters_data,group,gd0_weight, starts_with("pups"))
+select(litters_data, litter_number,group,gd0_weight)
+select(litters_data,gd0_weight,everything())
+select(litters_data,-group)
+select(litters_data,group,litter_number,gd0_weight:gd_of_birth)
+select(litters_data,GROUP = group, litter_number)
+
+rename(litters_data,GROUP = group)
+```
+
+***sequencing; renaming the variable; detemrine the first and last variable
+The difference between 35 and 33: 35 is only changing the variable name and show all of variables. 35 not only changed the variable name, but also choose the variables to be shown. ***
+
+## filtering !!!
+
+
+
+
+
+
+
+
+
+
