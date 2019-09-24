@@ -519,3 +519,43 @@ arrange(litters_data, pups_born_alive,gd0_weight)
     ## 10 Low7  #112                23.9        40.5          19               6
     ## # … with 39 more rows, and 2 more variables: pups_dead_birth <dbl>,
     ## #   pups_survive <dbl>
+
+## %\>% \!\!\!
+
+create a collection of commands…..
+
+``` r
+litters_data = 
+    read_csv("./data_import_examples/FAS_litters.csv") %>%
+    janitor::clean_names() %>%
+    select(-pups_survive) %>%
+    mutate(
+      wt_gain = gd18_weight - gd0_weight,
+      group = str_to_lower(group)) %>%
+      drop_na(gd0_weight)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   Group = col_character(),
+    ##   `Litter Number` = col_character(),
+    ##   `GD0 weight` = col_double(),
+    ##   `GD18 weight` = col_double(),
+    ##   `GD of Birth` = col_double(),
+    ##   `Pups born alive` = col_double(),
+    ##   `Pups dead @ birth` = col_double(),
+    ##   `Pups survive` = col_double()
+    ## )
+
+\*\*\* we don’t have to tell which dataframe we are using, only give the
+variable name. Turn the nested approach into a sequential chain by
+passing the result of one function call as an argument to the next
+function call:
+
+``` r
+litters_data %>% view()
+
+litters_data %>% pull(gd0_weight) %>% mean
+```
+
+    ## [1] 24.37941

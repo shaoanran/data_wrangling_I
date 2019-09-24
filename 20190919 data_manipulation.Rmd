@@ -77,9 +77,28 @@ arrange(litters_data, desc(pups_born_alive))
 arrange(litters_data, pups_born_alive,gd0_weight)
 ```
 
+## %>% !!!
+create a collection of commands.....
+
+```{r}
+litters_data = 
+    read_csv("./data_import_examples/FAS_litters.csv") %>%
+    janitor::clean_names() %>%
+    select(-pups_survive) %>%
+    mutate(
+      wt_gain = gd18_weight - gd0_weight,
+      group = str_to_lower(group)) %>%
+      drop_na(gd0_weight)
+```
+*** we don't have to tell which dataframe we are using, only give the variable name. 
+Turn the nested approach into a sequential chain by passing the result of one function call as an argument to the next function call:
 
 
+```{r}
+litters_data %>% view()
 
+litters_data %>% pull(gd0_weight) %>% mean
+```
 
 
 
