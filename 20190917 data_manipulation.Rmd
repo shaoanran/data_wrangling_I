@@ -1,0 +1,11 @@
+---
+title: "Data Manupulation"
+output: github_document 
+---
+
+```{r set up, include = FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+library(tidyverse)
+library(readxl)
+
+``` 
